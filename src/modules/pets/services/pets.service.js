@@ -34,3 +34,28 @@ exports.createPet = (req, res) => {
         }
     })
 }
+
+exports.updatePet = (req, res) => {
+    const {name, type, race, age, weight} = req.body;
+    const sql = `UPDATE pets SET '${name}', '${type}', ${race}', '${age}', '${weight}'WHERE id = '${id}'`
+    conexion.query(sql, (error, rows)=>{
+        if (error){
+            res.send(error)
+        } else {
+            res.send('Se actualizaron los datos')
+        }
+    })
+}
+
+exports.deletePet = (req, res) => {
+    const {id} = req.params;
+
+    const sql = `DELETE FROM pets WHERE id = '${id}'`
+    conexion.query(sql, (error, rows)=>{
+        if (error){
+            res.send(error)
+        } else {
+            res.send('Se eliminaron los datos')
+        }
+    })
+}
